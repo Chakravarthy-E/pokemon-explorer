@@ -51,8 +51,22 @@ function PokemonPage({ params }) {
 
   return (
     <div className="flex flex-col min-h-screen ">
-      <div className="px-6 py-6 space-y-2">
+      <div className="py-3 space-y-2">
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2  gap-4">
+          {/* Image and Name */}
+          <div className="p-4 flex items-center flex-col rounded-lg shadow-md border w-full">
+            <Image
+              src={data.image}
+              alt={data.name}
+              width={250}
+              height={250}
+              className="rounded-lg shadow-lg mb-4 w-full h-72 object-contain"
+            />
+            <p className="text-2xl font-bold text-center capitalize">
+              {data.name}
+            </p>
+          </div>
+
           {/* Basic Details */}
           <div className="p-4 rounded-lg shadow-md border w-full">
             <h2 className="text-xl font-semibold mb-2 underline">
@@ -69,19 +83,6 @@ function PokemonPage({ params }) {
             </p>
             <p className="capitalize font-semibold space-x-2">
               <span>Weight:</span> <span>{data.weight}</span>
-            </p>
-          </div>
-          {/* Image and Name */}
-          <div className="p-4 flex items-center flex-col rounded-lg shadow-md border w-full">
-            <Image
-              src={data.image}
-              alt={data.name}
-              width={250}
-              height={250}
-              className="rounded-lg shadow-lg mb-4 w-full h-72 object-contain"
-            />
-            <p className="text-2xl font-bold text-center capitalize">
-              {data.name}
             </p>
           </div>
 

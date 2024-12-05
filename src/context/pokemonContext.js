@@ -10,6 +10,11 @@ const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState("All");
+  const [sortByExperience, setSortByExperience] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
   const {
     data: pokemonData,
     isLoading,
@@ -37,15 +42,41 @@ export const PokemonProvider = ({ children }) => {
 
   const filteredPokemon = useMemo(() => {
     if (!pokemonData) return [];
-
-    return pokemonData.filter((pokemon) => {
+    const filtered = pokemonData.filter((pokemon) => {
       const matchesSearch = pokemon.name
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
 
-      return matchesSearch;
+      const matchesType =
+        selectedType === "All" || pokemon.pokemonTypes.includes(selectedType);
+
+      return matchesSearch && matchesType;
     });
-  }, [pokemonData, searchQuery]);
+
+    if (sortByExperience) {
+      return filtered.sort(
+        (a, b) =>
+          b.pokemonDetails.base_experience - a.pokemonDetails.base_experience,
+      );
+    }
+
+    return filtered;
+  }, [pokemonData, searchQuery, selectedType, sortByExperience]);
+
+  const paginatedPokemon = useMemo(() => {
+    if (!filteredPokemon) return [];
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    return filteredPokemon.slice(startIndex, endIndex);
+  }, [filteredPokemon, currentPage]);
+
+  const uniquePokemonTypes = useMemo(() => {
+    if (!pokemonData) return [];
+    const types = pokemonData.flatMap((pokemon) => pokemon.pokemonTypes);
+    return ["All", ...new Set(types)];
+  }, [pokemonData]);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
@@ -55,6 +86,15 @@ export const PokemonProvider = ({ children }) => {
     searchQuery,
     setSearchQuery,
     filteredPokemon,
+    uniquePokemonTypes,
+    selectedType,
+    setSelectedType,
+    sortByExperience,
+    setSortByExperience,
+    currentPage,
+    setCurrentPage,
+    paginatedPokemon,
+    itemsPerPage,
   };
 
   return (

@@ -14,7 +14,7 @@ function Card({ name, types, image, onCardClick }) {
           {types?.[0] && (
             <span
               key={types[0]}
-              className="bg-gray-500 text-white rounded-md text-xs p-1"
+              className="bg-gray-500 text-white rounded-md text-xs p-1 capitalize"
             >
               {types[0]}
             </span>

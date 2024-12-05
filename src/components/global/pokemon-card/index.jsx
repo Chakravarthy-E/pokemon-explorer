@@ -20,7 +20,10 @@ function PokemonCard({ name, image, types }) {
           <p className="text-lg font-bold font-outfit capitalize">{name}</p>
           <p className="text-sm space-x-2">
             {types?.map((type) => (
-              <span key={type} className="bg-slate-600 rounded-md p-1">
+              <span
+                key={type}
+                className="bg-slate-600 rounded-md p-1 capitalize"
+              >
                 {type}
               </span>
             ))}

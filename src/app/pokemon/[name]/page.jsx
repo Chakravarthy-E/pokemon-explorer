@@ -18,14 +18,20 @@ function PokemonPage({ params }) {
 
   const renderMoves = (moves) =>
     moves.slice(0, 10).map((item) => (
-      <div key={item.move.name} className="flex justify-between text-sm ">
-        <span>{item.move.name.toUpperCase()}</span>
+      <div
+        key={item.move.name}
+        className="text-sm bg-gray-600 px-2 py-1 rounded w-fit"
+      >
+        <span className="capitalize">{item.move.name}</span>
       </div>
     ));
   const renderAbilities = (abilities) =>
     abilities.map((item) => (
-      <div key={item.ability.name} className="flex justify-between text-sm ">
-        <span>{item.ability.name.toUpperCase()}</span>
+      <div
+        key={item.ability.name}
+        className="text-sm bg-gray-600 px-2 py-1 rounded w-fit"
+      >
+        <span className="capitalize">{item.ability.name}</span>
       </div>
     ));
 
@@ -33,18 +39,18 @@ function PokemonPage({ params }) {
     stats.map((stat) => (
       <div
         key={stat.stat.name}
-        className="flex justify-between text-sm space-x-3 "
+        className="flex justify-between text-sm space-x-3 bg-gray-600 px-2 py-1 rounded w-full"
       >
-        <span>{stat.stat.name.toUpperCase()}</span>
+        <span className="capitalize">{stat.stat.name}</span>
         <span className="text-blue-500 font-semibold">{stat.base_stat}</span>
       </div>
     ));
 
   const renderTypes = (types) =>
     types.map((item) => (
-      <div key={item.type.name} className="flex items-start text-sm ">
-        <span className="capitalize font-semibold">
-          {item.type.name.toUpperCase()}
+      <div key={item.type.name}>
+        <span className="capitalize font-semibold bg-gray-600 px-2 py-1 rounded w-fit text-sm">
+          {item.type.name}
         </span>
       </div>
     ));
@@ -67,6 +73,32 @@ function PokemonPage({ params }) {
             </p>
           </div>
 
+          {/* Moves */}
+          <div className="p-4 rounded-lg shadow-md border w-full">
+            <h2 className="text-xl font-semibold mb-2 underline">Moves</h2>
+            <div className="space-y-2">{renderMoves(data.moves)}</div>
+          </div>
+
+          {/* Stats */}
+          <div className="p-4 rounded-lg shadow-md border w-full">
+            <h2 className="text-xl font-semibold mb-2 underline">Stats</h2>
+            <div className="space-y-2">{renderStats(data.stats)}</div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2  gap-4">
+          {/* Abilities */}
+          <div className="p-4 rounded-lg shadow-md border w-full">
+            <h2 className="text-xl font-semibold mb-2 underline">Abilities</h2>
+            <div className="space-y-2">{renderAbilities(data.abilities)}</div>
+          </div>
+
+          {/* Types */}
+          <div className="p-4 rounded-lg shadow-md border w-full">
+            <h2 className="text-xl font-semibold mb-2 underline">Types</h2>
+            <div className="space-y-2">{renderTypes(data.types)}</div>
+          </div>
+
           {/* Basic Details */}
           <div className="p-4 rounded-lg shadow-md border w-full">
             <h2 className="text-xl font-semibold mb-2 underline">
@@ -84,32 +116,6 @@ function PokemonPage({ params }) {
             <p className="capitalize font-semibold space-x-2">
               <span>Weight:</span> <span>{data.weight}</span>
             </p>
-          </div>
-
-          {/* Moves */}
-          <div className="p-4 rounded-lg shadow-md border w-full">
-            <h2 className="text-xl font-semibold mb-2 underline">Moves</h2>
-            <div className="space-y-2">{renderMoves(data.moves)}</div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2  gap-4">
-          {/* Stats */}
-          <div className="p-4 rounded-lg shadow-md border w-full">
-            <h2 className="text-xl font-semibold mb-2 underline">Stats</h2>
-            <div className="space-y-2">{renderStats(data.stats)}</div>
-          </div>
-
-          {/* Abilities */}
-          <div className="p-4 rounded-lg shadow-md border w-full">
-            <h2 className="text-xl font-semibold mb-2 underline">Abilities</h2>
-            <div className="space-y-2">{renderAbilities(data.abilities)}</div>
-          </div>
-
-          {/* Types */}
-          <div className="p-4 rounded-lg shadow-md border w-full">
-            <h2 className="text-xl font-semibold mb-2 underline">Types</h2>
-            <div className="space-y-2">{renderTypes(data.types)}</div>
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ export default function Home() {
     filteredPokemon,
     itemsPerPage,
     paginatedPokemon,
+    handleCardClick,
   } = usePokemon();
 
   const totalPages = Math.ceil(filteredPokemon.length / itemsPerPage);
@@ -68,6 +69,7 @@ export default function Home() {
             image={pokemon.pokemonImage}
             name={pokemon.name}
             types={pokemon.pokemonTypes}
+            onCardClick={handleCardClick}
           />
         ))}
       </div>

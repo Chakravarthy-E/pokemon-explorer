@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function PokemonCard({ name, image, types }) {
+function PokemonCard({ name, image, types, onCardClick }) {
   return (
-    <Link href={`/pokemon/${name}`}>
+    <Link href={`/pokemon/${name}`} onClick={onCardClick}>
       <div className="shadow-lg hover:shadow-2xl border border-gray-200 rounded-lg overflow-hidden">
         <div className="flex items-center justify-center pt-4">
           <Image

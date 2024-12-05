@@ -78,6 +78,10 @@ export const PokemonProvider = ({ children }) => {
     return ["All", ...new Set(types)];
   }, [pokemonData]);
 
+  const handleCardClick = () => {
+    setSearchQuery("");
+  };
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     pokemonData,
@@ -95,6 +99,7 @@ export const PokemonProvider = ({ children }) => {
     setCurrentPage,
     paginatedPokemon,
     itemsPerPage,
+    handleCardClick,
   };
 
   return (

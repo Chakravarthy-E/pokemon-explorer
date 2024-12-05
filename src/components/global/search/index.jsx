@@ -5,10 +5,8 @@ import { usePokemon } from "../../../context/pokemonContext";
 import Card from "./card";
 
 function Search() {
-  const { searchQuery, setSearchQuery, filteredPokemon } = usePokemon();
-  const handleCardClick = () => {
-    setSearchQuery(""); // Reset search query
-  };
+  const { searchQuery, setSearchQuery, filteredPokemon, handleCardClick } =
+    usePokemon();
 
   return (
     <div className="relative z-10">

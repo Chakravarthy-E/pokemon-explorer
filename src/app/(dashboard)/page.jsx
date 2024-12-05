@@ -1,5 +1,6 @@
 "use client";
 
+import FilterByType from "../../components/global/filter-by-type";
 import Pagination from "../../components/global/pagination";
 import PokemonCard from "../../components/global/pokemon-card";
 import { usePokemon } from "../../context/pokemonContext";
@@ -40,18 +41,12 @@ export default function Home() {
   return (
     <div className="py-3">
       <div className="space-x-3">
-        <select
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value)}
-          className="outline-none border rounded px-3 py-2 text-black capitalize text-xs"
-          disabled={currentPage > 1}
-        >
-          {uniquePokemonTypes.map((type) => (
-            <option key={type} value={type} className="capitalize text-xs">
-              {type}
-            </option>
-          ))}
-        </select>
+        <FilterByType
+          currentPage={currentPage}
+          selectedType={selectedType}
+          setSelectedType={setSelectedType}
+          types={uniquePokemonTypes}
+        />
 
         {/* eslint-disable-next-line react/button-has-type */}
         <button

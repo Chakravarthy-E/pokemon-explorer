@@ -13,7 +13,7 @@ function Search() {
       <input
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="outline-none text-black px-2 py-2 rounded w-full border  focus:outline-none"
+        className="outline-none text-black px-2 py-2 rounded  border  focus:outline-none"
         placeholder="Search Pokemon...."
       />
       {searchQuery.trim() && (

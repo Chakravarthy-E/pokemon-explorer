@@ -28,14 +28,9 @@ export const useFetchAllPokemon = () => {
         }
         // eslint-disable-next-line no-shadow
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Error in fetching Pokémon data:", error);
-        throw new Error("Failed to fetch Pokémon data");
+        throw new Error("Failed to fetch Pokémon data", error);
       }
     },
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
-    // eslint-disable-next-line no-shadow
-    onError: (error) => console.error("Error in fetching Pokémon data:", error),
   });
 
   return { data, isLoading, error };
